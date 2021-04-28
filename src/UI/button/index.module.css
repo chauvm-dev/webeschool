@@ -1,0 +1,41 @@
+button {
+  border-radius: 20px;
+  background-color: rgba(23, 34, 45, 1);
+  color: #eeeeee;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 14px 44px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border: 2px solid rgba(33, 44, 55, 1);
+}
+
+button:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.dark {
+}
+
+button.light {
+  border-color: #eeeeee;
+  box-shadow: none;
+}

@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Switch, Route } from "react-router-dom";
+import Loading from "./UI/loading";
+import React, { Suspense, lazy } from "react";
+import Home from "./features/home";
 function App() {
+  const Auth = lazy(() => import("./features/auth"));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Switch>
+        <Route path="/auth" component={Auth} />
+        <Route path="/home" component={Home} />
+      </Switch>
+    </Suspense>
   );
 }
 
