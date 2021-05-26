@@ -2,18 +2,25 @@ import * as actionTypes from "./actionTypes";
 
 import axios from "../../api/index";
 
-const signupStart = () => {
+export const signStart = () => {
   return {
     type: actionTypes.SIGN_START,
   };
 };
-const signupSuccess = (dataSuccess) => {
+const signSuccess = (dataSuccess) => {
+  console.log(dataSuccess);
   return {
     type: actionTypes.SIGN_SUCCESS,
     payload: dataSuccess,
   };
 };
-const signupFailed = (error) => {
+const signoutSuccess = () => {
+  return {
+    type: actionTypes.SIGN_OUT_SUCCESS,
+  };
+};
+export const signFailed = (error) => {
+  console.log(error?.response);
   return {
     type: actionTypes.SIGN_FAILED,
     payload: error,
@@ -23,18 +30,24 @@ const signupFailed = (error) => {
 export const signup = (signupData) => {
   return async (dispatch) => {
     try {
-      dispatch(signupStart());
+      dispatch(signStart());
       const userResponse = await axios.post("/user/signup", signupData);
+      console.log(userResponse);
       dispatch(
-        signupSuccess({
-          userID: userResponse.data.userID,
-          email: userResponse.data.email,
-          lname: userResponse.data.lname,
-          fname: userResponse.data.fname,
+        signSuccess({
+          _id: userResponse._id,
+          username: userResponse.username,
+          socialType: userResponse.socialType,
+          socialAuthentication: userResponse.socialAuthentication,
+          profile: userResponse.profile,
+          _conversations: userResponse._conversations,
+          status: userResponse.status,
+          createdAt: userResponse.createdAt,
+          updatedAt: userResponse.updatedAt,
         })
       );
     } catch (error) {
-      dispatch(signupFailed(error.message));
+      dispatch(signFailed(error));
     }
   };
 };
@@ -42,20 +55,35 @@ export const signup = (signupData) => {
 export const signin = (signinData) => {
   return async (dispatch) => {
     try {
-      dispatch(signupStart());
+      dispatch(signStart());
       const userResponse = await axios.post("/user/signin", signinData);
       dispatch(
-        signupSuccess({
-          userID: userResponse.data.userID,
-          email: userResponse.data.email,
-          lname: userResponse.data.lname,
-          fname: userResponse.data.fname,
-          BOD: userResponse.data.BOD,
-          gender: userResponse.data.gender,
+        signSuccess({
+          _id: userResponse._id,
+          username: userResponse.username,
+          socialType: userResponse.socialType,
+          socialAuthentication: userResponse.socialAuthentication,
+          profile: userResponse.profile,
+          _conversations: userResponse._conversations,
+          status: userResponse.status,
+          createdAt: userResponse.createdAt,
+          updatedAt: userResponse.updatedAt,
         })
       );
     } catch (error) {
-      dispatch(signupFailed(error.message));
+      dispatch(signFailed(error));
+    }
+  };
+};
+
+export const signout = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(signStart());
+      await axios.post("/user/signout");
+      dispatch(signoutSuccess());
+    } catch (error) {
+      dispatch(signFailed(error));
     }
   };
 };

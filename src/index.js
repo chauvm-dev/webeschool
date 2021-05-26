@@ -10,10 +10,9 @@ import rootReducer from "./store/reducers";
 import { BrowserRouter } from "react-router-dom";
 
 const composeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? typeof window !== "undefined" &&
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+  (process.env.NODE_ENV === "development" &&
+    window?.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
 
 const store = createStore(
   rootReducer,

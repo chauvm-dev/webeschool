@@ -11,10 +11,10 @@
 
 .Error {
   background-color: rgba(237, 133, 133, 0.8);
-  border-color:rgb(235, 62, 62);
+  border-color: rgb(235, 62, 62);
   /* box-shadow: 0 0 0 30px rgba(237, 133, 133, 0.8) inset !important; */
 }
 
-.Error::placeholder {
+/* .Error::placeholder {
   color: #eee;
-}
+} */

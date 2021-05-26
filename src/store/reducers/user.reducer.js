@@ -1,11 +1,26 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-  userID: null,
-  email: null,
-  fname: null,
-  lname: null,
-  BOD: null,
-  gender: null,
+  _id: null,
+  username: null,
+  socialType: null,
+  socialAuthentication: null,
+  profile: {
+    address: {
+      provide: [],
+      district: [],
+      ward: [],
+      street: null,
+    },
+    BOD: null,
+    sex: "private",
+    phone: null,
+    _avatar: null,
+    displayName: null,
+  },
+  _conversations: null,
+  status: null,
+  createdAt: null,
+  updatedAt: null,
   loading: false,
   error: null,
 };
@@ -15,14 +30,21 @@ const userReducer = (state = initialState, action) => {
     case actionTypes.SIGN_SUCCESS:
       return {
         ...state,
-        fname: action.payload.fname,
-        lname: action.payload.lname,
-        BOD: action.payload.BOD,
-        gender: action.payload.gender,
-        userID: action.payload.userID,
-        email: action.payload.email,
+        _id: action.payload._id,
+        username: action.payload.username,
+        socialType: action.payload.socialType,
+        socialAuthentication: action.payload.socialAuthentication,
+        profile: action.payload.profile,
+        _conversations: action.payload._conversations,
+        status: action.payload.status,
+        createdAt: action.payload.createdAt,
+        updatedAt: action.payload.updatedAt,
         loading: false,
         error: null,
+      };
+    case actionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...initialState,
       };
     case actionTypes.SIGN_START:
       return {
@@ -33,14 +55,8 @@ const userReducer = (state = initialState, action) => {
     case actionTypes.SIGN_FAILED:
       return {
         ...state,
-        fname: null,
-        lname: null,
-        BOD: null,
-        gender: null,
-        userID: null,
-        email: null,
+        error: action.payload,
         loading: false,
-        error: action.payload.error,
       };
     default:
       return state;

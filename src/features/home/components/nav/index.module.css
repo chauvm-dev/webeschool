@@ -1,0 +1,182 @@
+.chat_nav {
+  height: 100%;
+  width: 64px;
+  position: relative;
+  border-right: 1px solid #ccc;
+  background-image: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.header_nav {
+  display: flex;
+  height: 100%;
+}
+
+.card_app {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app_logo {
+  height: 64px;
+  width: 100%;
+  padding: 6px;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+}
+
+.app_logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+.nav_icon {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav_icon img {
+  height: 100%;
+  filter: invert(31%) sepia(97%) saturate(2622%) hue-rotate(197deg)
+    brightness(106%) contrast(103%);
+}
+
+.app_toolbar {
+  width: 100%;
+  height: calc(100% - 100px);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app_toolbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.app_toolbar ul li {
+  width: 100%;
+  height: 47px;
+  margin: 8px 0;
+}
+
+.toolbar_item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+}
+
+.toolbar_item > img {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  object-fit: cover;
+  filter: invert(98%) sepia(30%) saturate(0%) hue-rotate(263deg)
+    brightness(103%) contrast(101%);
+  transition: 0.2s all ease-in-out;
+}
+.toolbar_item .toolbar_item_effect {
+  position: absolute;
+  height: calc(100%);
+  width: calc(100%);
+  float: left;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255, 0.2);
+  transition: 0.2s all ease-in-out;
+  opacity: 0;
+}
+
+.opacity_show {
+  opacity: 1;
+}
+
+.toolbar_item > img:hover {
+  filter: invert(79%) sepia(34%) saturate(421%) hue-rotate(345deg)
+    brightness(103%) contrast(105%);
+}
+
+.toolbar_item > img:hover .toolbar_item_effect {
+  background-color: rgb(255, 255, 255, 0.2);
+}
+
+.toolbar_item > img:hover .toolbar_item {
+  background-color: #fff;
+}
+.setting_popup {
+  position: absolute;
+  height: 140px;
+  width: 120px;
+  top: -132px;
+  right: -112px;
+  background-image: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  border-radius: 10px;
+  padding: 8px 0;
+  color: #111;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.16);
+  display: none;
+  z-index: 99999;
+}
+
+.setting_popup.show {
+  display: flex;
+}
+
+.setting_popup p {
+  text-align: center;
+}
+.setting_popup ul li {
+  padding: 4px 12px;
+  height: 28px;
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+.setting_popup ul li:hover {
+  background-color: #fff;
+}
+.setting_popup ul li div {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.setting_popup ul li div img {
+  height: 100%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.app_logo .user_status_activity {
+  content: "";
+  position: absolute;
+  background: #15a85f;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  bottom: 8px;
+  right: 8px;
+  border: 1px solid #fff;
+}

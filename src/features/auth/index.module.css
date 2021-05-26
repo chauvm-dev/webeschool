@@ -17,11 +17,11 @@ h2 {
   text-align: center;
 }
 
-p {
+.fragment p {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   margin: 20px 0 30px;
 }
 
@@ -61,7 +61,7 @@ form {
   position: absolute;
   top: 0;
   height: 100%;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .sign_in_container {
@@ -85,7 +85,7 @@ form {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
-  animation: show 0.6s;
+  animation: show 0.4s;
 }
 
 @keyframes show {
@@ -109,7 +109,7 @@ form {
   width: 50%;
   height: 100%;
   overflow: hidden;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.4s ease-in-out;
   z-index: 100;
 }
 
@@ -118,7 +118,6 @@ form {
 }
 
 .overlay {
-  /* background: rgba(23,34,45,1); */
   background: #adadad;
   background: -webkit-linear-gradient(
     to right,
@@ -139,7 +138,7 @@ form {
   height: 100%;
   width: 200%;
   transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .container.right_panel_active .overlay {
@@ -152,18 +151,18 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 60px;
   text-align: center;
   top: 0;
   height: 100%;
   width: 50%;
   transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .overlay_left {
   left: 0;
-  transform: translateX(-20%);
+  transform: translateY(-20%);
 }
 
 .container.right_panel_active .overlay_left {
@@ -176,20 +175,43 @@ form {
 }
 
 .container.right_panel_active .overlay_right {
-  transform: translateX(20%);
+  transform: translateY(20%);
 }
 
 .social_container {
   margin: 20px 0;
+  display: flex;
+  height: 40px;
+  width: 50px;
+  justify-content: center;
 }
 
-.social_container a {
-  border: 1px solid #c5c5c5;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.social_container svg {
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.social_container svg,
+.social_container div {
   margin: 0 5px;
-  height: 40px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.donut {
   width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgba(23, 34, 45, 0.3);
+  border-top-color: rgba(23, 34, 45, 1);
+  animation: spin 1.5s infinite linear;
+}
+
+.cursor_not_allowed {
+  cursor: not-allowed !important;
 }

@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: process.env.REACT_APP_BACKEND_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -25,7 +24,7 @@ instance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response;
+    return response.data;
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

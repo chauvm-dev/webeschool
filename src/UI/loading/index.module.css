@@ -5,6 +5,21 @@
   justify-content: center;
   align-items: center;
   background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.loadding_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(2555, 255, 255, 0.1);
 }
 
 .loader {

@@ -1,0 +1,98 @@
+.chat_list {
+  width: 320px;
+  border-right: 1px solid #ffffff;
+  height: 100%;
+  background-image: linear-gradient(to top, #eef1f5 100%, #e6e9f0 0%);
+}
+
+.chat_list .conversation_header {
+  height: 64px;
+  border-bottom: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.chat_list .search_box {
+  position: relative;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.chat_list .search_box img {
+  position: absolute;
+  height: calc(100% - 24px);
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8px;
+  filter: invert(65%) sepia(1%) saturate(1343%) hue-rotate(316deg)
+    brightness(85%) contrast(65%);
+}
+
+.chat_list .search_box input {
+  height: 32px;
+  line-height: 32px;
+  background-color: #ebedee;
+  border: 1px solid #fff;
+  font-size: 15px;
+  border-radius: 16px;
+  width: calc(100%);
+  padding: 0 34px;
+  outline: none;
+}
+
+.list_room {
+  height: calc(100% - 64px);
+  overflow: auto;
+}
+.list_room ul {
+  padding: 0;
+  margin: 0;
+}
+
+.list_room ul li {
+  height: 64px;
+}
+
+.card_room {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
+  position: relative;
+  border-radius: 10px;
+}
+
+.card_room:hover {
+  background-color: #ddd;
+}
+
+.room_avatar {
+  height: 52px;
+  width: 52px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 1px solid #bbb;
+  user-select: none;
+}
+.room_avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.room_information {
+  font-size: 0.85rem;
+  height: 100%;
+  width: calc(100% - 68px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden; /* "overflow" value must be different from  visible"*/
+  -o-text-overflow: ellipsis; /* Opera < 11*/
+  text-overflow: ellipsis; /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
+}
