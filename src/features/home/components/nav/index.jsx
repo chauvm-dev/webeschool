@@ -1,21 +1,27 @@
 import React from "react";
 import classes from "./index.module.css";
-import logout from "../../../../assets/images/logout.svg";
-import button from "../../../../assets/images/button.svg";
-import timetable from "../../../../assets/images/timetable.svg";
-import settings from "../../../../assets/images/settings.svg";
-import user from "../../../../assets/images/user.svg";
-import inbox from "../../../../assets/images/inbox.svg";
+
+import assets from "/media/troutrous/Work/Reactjs/ESchool/src/assets/index.js";
 import OutsideHandlerWrap from "../../../../hoc/OutsideHandlerWrap";
-const ChatNav = ({ settingsPopup, setSettingsPopup, handleLogout }) => {
+const ChatNav = ({
+  settingsPopup,
+  setSettingsPopup,
+  handleLogout,
+  userAvatar,
+}) => {
   return (
     <div className={classes.chat_nav}>
       <div className={classes.card_app}>
         <div className={classes.app_logo}>
-          <img
-            src="https://yesoffice.com.vn/wp-content/themes/zw-theme//assets/images/default.jpg"
-            alt="logo"
-          ></img>
+          {(userAvatar && (
+            <img src={userAvatar?.src} alt={userAvatar?.alt} />
+          )) || (
+            <img
+              src="https://yesoffice.com.vn/wp-content/themes/zw-theme//assets/images/default.jpg"
+              alt="logo"
+            />
+          )}
+
           <div className={classes.user_status_activity}></div>
         </div>
       </div>
@@ -24,19 +30,19 @@ const ChatNav = ({ settingsPopup, setSettingsPopup, handleLogout }) => {
           <li>
             <div className={classes.toolbar_item}>
               <div className={classes.toolbar_item_effect}></div>
-              <img src={button} alt="plus" />
+              <img src={assets.button_svg} alt="plus" />
             </div>
           </li>
           <li>
             <div className={classes.toolbar_item}>
               <div className={classes.toolbar_item_effect}></div>
-              <img src={timetable} alt="timetable" />
+              <img src={assets.timetable_svg} alt="timetable" />
             </div>
           </li>
           <li>
             <div className={classes.toolbar_item}>
               <div className={classes.toolbar_item_effect}></div>
-              <img src={inbox} alt="inbox" />
+              <img src={assets.inbox_svg} alt="inbox" />
             </div>
           </li>
         </ul>
@@ -49,8 +55,8 @@ const ChatNav = ({ settingsPopup, setSettingsPopup, handleLogout }) => {
             >
               <div className={classes.toolbar_item}>
                 <img
-                  src={settings}
-                  alt="settings"
+                  src={assets.settings_svg}
+                  alt="settings_svg"
                   onClick={() => setSettingsPopup(!settingsPopup)}
                 />
                 <div
@@ -62,19 +68,19 @@ const ChatNav = ({ settingsPopup, setSettingsPopup, handleLogout }) => {
                   <ul>
                     <li>
                       <div>
-                        <img src={user} alt="user" />
+                        <img src={assets.user_svg} alt="user" />
                         Account
                       </div>
                     </li>
                     <li>
                       <div>
-                        <img src={settings} alt="settings" />
+                        <img src={assets.settings_svg} alt="settings" />
                         System
                       </div>
                     </li>
                     <li onClick={handleLogout}>
                       <div>
-                        <img src={logout} alt="logout" />
+                        <img src={assets.logout_svg} alt="logout" />
                         Logout
                       </div>
                     </li>

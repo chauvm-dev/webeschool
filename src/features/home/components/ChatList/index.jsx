@@ -1,12 +1,13 @@
 import React from "react";
 import classes from "./index.module.css";
-import search_icon from "../../../../assets/images/search.svg";
+import assets from "/media/troutrous/Work/Reactjs/ESchool/src/assets/index.js";
+
 const ChatList = ({ listRoom }) => {
   return (
     <div className={classes.chat_list}>
       <div className={classes.conversation_header}>
         <div className={classes.search_box}>
-          <img src={search_icon} alt="search_icon" />
+          <img src={assets.search_svg} alt="search_icon" />
           <input type="text" placeholder="Search" />
         </div>
       </div>
@@ -14,7 +15,7 @@ const ChatList = ({ listRoom }) => {
         <ul>
           {listRoom.map((room) => (
             <li key={room._id}>
-              <div className={classes.card_room}>
+              <div className={[classes.card_room].join(" ")}>
                 <div className={classes.room_avatar}>
                   <img src={room.avatar} alt={room.name} />
                 </div>

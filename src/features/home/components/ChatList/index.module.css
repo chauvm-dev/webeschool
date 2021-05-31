@@ -32,7 +32,7 @@
 .chat_list .search_box input {
   height: 32px;
   line-height: 32px;
-  background-color: #ebedee;
+  background-color: #d6d8dc;
   border: 1px solid #fff;
   font-size: 15px;
   border-radius: 16px;
@@ -66,7 +66,11 @@
 }
 
 .card_room:hover {
-  background-color: #ddd;
+  background-color: #d6d8dc;
+}
+
+.card_active {
+  background-color: #d6d8dc;
 }
 
 .room_avatar {
@@ -75,7 +79,7 @@
   overflow: hidden;
   border-radius: 50%;
   margin-right: 12px;
-  border: 1px solid #bbb;
+  border: 1px solid #fff;
   user-select: none;
 }
 .room_avatar img {
@@ -95,4 +99,15 @@
   overflow: hidden; /* "overflow" value must be different from  visible"*/
   -o-text-overflow: ellipsis; /* Opera < 11*/
   text-overflow: ellipsis; /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
+}
+
+.room_information h6 {
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+.room_information p {
+  color: #4a4a4a;
 }

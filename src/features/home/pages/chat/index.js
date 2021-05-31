@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
-import logo from "../../../../assets/images/unnamed_auto_x2.png";
-import cameraICon from "../../../../assets/images/video-camera .svg";
-import listIcon from "../../../../assets/images/sidebar.svg";
-import image from "../../../../assets/images/image.svg";
-import attachments from "../../../../assets/images/attachments.svg";
-import send from "../../../../assets/images/send.svg";
+
 import ChatNav from "../../components/nav/index";
-import live from "../../../../assets/images/live.svg";
 
 import Modal from "../../../../UI/modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../../../../store/actions";
 import ChatList from "../../components/ChatList";
+import Assets from "/media/troutrous/Work/Reactjs/ESchool/src/assets/index.js";
+import { io } from "socket.io-client";
 
 const fake_list_room = [
   {
@@ -169,10 +165,32 @@ const fake_list_messages = [
     },
   },
 ];
-
+const socket = io(process.env.REACT_APP_BACKEND_URL, {
+  withCredentials: true,
+});
 const Chat = () => {
+  //init
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // client-side
+    socket.on("connect", () => {
+      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+    });
+
+    socket.on("disconnect", () => {
+      console.log(socket.id); // undefined
+    });
+  }, []);
+
+  //state
   const [settingsPopup, setSettingsPopup] = useState(false);
+  const [showConverInfo, setShowConverInfo] = useState(true);
+
+  //redux state
+  const userProfileState = useSelector((state) => state.user.profile);
+
+  //handle
 
   const handleLogout = () => {
     try {
@@ -198,6 +216,7 @@ const Chat = () => {
         settingsPopup={settingsPopup}
         setSettingsPopup={setSettingsPopup}
         handleLogout={handleLogout}
+        userAvatar={userProfileState?._avatar}
       />
       <ChatList listRoom={fake_list_room} />
       {/* <Modal>
@@ -224,10 +243,16 @@ const Chat = () => {
                   " "
                 )}
               >
-                <img src={cameraICon} alt="video_call" />
+                <img src={Assets.video_camera_svg} alt="video_call" />
               </div>
               <div className={classes.nav_icon}>
-                <img src={listIcon} alt="list" />
+                <img
+                  src={Assets.layout_svg}
+                  alt="layout_svg"
+                  onClick={() => {
+                    setShowConverInfo(!showConverInfo);
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -254,12 +279,12 @@ const Chat = () => {
           <div className={classes.conversation_input}>
             <div className={classes.input_toolbar}>
               <div className={classes.nav_icon}>
-                <img src={image} alt="images" />
+                <img src={Assets.image_svg} alt="images" />
               </div>
               <div
                 className={[classes.nav_icon, classes.padding_left_8].join(" ")}
               >
-                <img src={attachments} alt="attachments" />
+                <img src={Assets.attachments_svg} alt="attachments" />
               </div>
             </div>
             <div className={classes.input_text}>
@@ -267,17 +292,19 @@ const Chat = () => {
             </div>
             <div className={classes.input_toolbar}>
               <div className={classes.nav_icon}>
-                <img src={send} alt="video_call" />
+                <img src={Assets.send_svg} alt="send_svg" />
               </div>
             </div>
           </div>
         </div>
-        <div className={classes.conversation_information}>
-          <div className={classes.conversation_header}>
-            <p>Conversation Information</p>
+        {showConverInfo && (
+          <div className={classes.conversation_information}>
+            <div className={classes.conversation_header}>
+              <p>Conversation Information</p>
+            </div>
+            <div className={classes.information_content}></div>
           </div>
-          <div className={classes.information_content}></div>
-        </div>
+        )}
       </div>
     </div>
   );
