@@ -43,3 +43,7 @@ div[disabled],
 svg[disabled] {
   pointer-events: none;
 }
+
+p {
+  margin: 0;
+}

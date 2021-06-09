@@ -80,7 +80,7 @@ export const signout = () => {
   return async (dispatch) => {
     try {
       dispatch(signStart());
-      await axios.post("/user/signout");
+      await axios.get("/user/signout");
       dispatch(signoutSuccess());
     } catch (error) {
       dispatch(signFailed(error));

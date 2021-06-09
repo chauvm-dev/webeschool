@@ -2,7 +2,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Loading from "./UI/loading";
 import React, { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signin } from "./store/actions";
+import { loadConversation, signin } from "./store/actions";
+import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const dispatch = useDispatch();
   const Auth = lazy(() => import("./features/auth"));
@@ -90,6 +91,7 @@ const App = () => {
   }, []);
   useEffect(() => {
     dispatch(signin());
+    dispatch(loadConversation());
   }, [dispatch]);
 
   return (
@@ -103,7 +105,8 @@ const App = () => {
             </Switch>
           )) || (
             <Switch>
-              <Route path="/" component={Home} />
+              <Route path="/home" component={Home} />
+              <Redirect from="/" to="/home" component={Home} />
             </Switch>
           )}
         </>

@@ -1,8 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import classes from "./index.module.css";
 import assets from "/media/troutrous/Work/Reactjs/ESchool/src/assets/index.js";
 
 const ChatList = ({ listRoom }) => {
+  const conversations = useSelector(
+    (state) => state.conversation.conversations
+  );
+  console.log(process.env.IMAGE_URL_THUMBNAIL_DEFAULT);
   return (
     <div className={classes.chat_list}>
       <div className={classes.conversation_header}>
@@ -13,11 +18,17 @@ const ChatList = ({ listRoom }) => {
       </div>
       <div className={classes.list_room}>
         <ul>
-          {listRoom.map((room) => (
+          {conversations.map((room) => (
             <li key={room._id}>
               <div className={[classes.card_room].join(" ")}>
                 <div className={classes.room_avatar}>
-                  <img src={room.avatar} alt={room.name} />
+                  <img
+                    src={
+                      room.thumbnail.path ||
+                      `${process.env.IMAGE_URL_THUMBNAIL_DEFAULT}`
+                    }
+                    alt={room.thumbnail.alt || "Room Thumbnail"}
+                  />
                 </div>
                 <div className={classes.room_information}>
                   <h6>

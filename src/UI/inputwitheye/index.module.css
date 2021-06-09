@@ -1,0 +1,46 @@
+.Container {
+  width: 100%;
+  position: relative;
+}
+.Input {
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid rgba(23, 34, 45, 1);
+  padding: 12px 15px;
+  padding-right: 32px;
+  margin: 8px 0;
+  width: 100%;
+  outline: none;
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 1) inset !important;
+}
+
+.Error {
+  background-color: rgba(237, 133, 133, 0.8);
+  border-color: rgb(235, 62, 62);
+  /* box-shadow: 0 0 0 30px rgba(237, 133, 133, 0.8) inset !important; */
+}
+
+.Img {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  cursor: pointer;
+  height: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 8px;
+}
+
+.hideeye {
+  filter: invert(75%) sepia(0%) saturate(2753%) hue-rotate(55deg)
+    brightness(92%) contrast(85%);
+}
+
+.showeye {
+  filter: invert(37%) sepia(9%) saturate(6%) hue-rotate(314deg) brightness(94%)
+    contrast(93%);
+}
+
+/* .Error::placeholder {
+    color: #eee;
+  } */

@@ -1,0 +1,232 @@
+.chat_conversation {
+  width: calc(100vw - 64px - 320px);
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.conversation_header {
+  height: 64px;
+  border-bottom: 1px solid #e6e9f0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.conversation_header > p {
+  text-align: center;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.conversation_content {
+  width: calc(100%);
+  border-right: 1px solid #e6e9f0;
+  height: 100%;
+}
+
+.conversation_card {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.conversation_avatar {
+  height: 44px;
+  width: 44px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 1px solid #e6e9f0;
+}
+.conversation_avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.conversation_text {
+  font-size: 0.85rem;
+  height: 100%;
+  width: calc(100% - 68px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.conversation_messages {
+  height: calc(100% - 104px);
+}
+
+.conversation_messages ul {
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  overflow: auto;
+}
+
+.message {
+  display: flex;
+  margin-top: 8px;
+}
+
+.message_reverse {
+  flex-direction: row-reverse;
+}
+
+.message_avatar {
+  height: 44px;
+  width: 44px;
+  user-select: none;
+}
+
+.message_avatar img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 1px solid #e6e9f0;
+}
+
+.message_content {
+  max-width: calc(100% - 88px);
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(to top, #eef1f5 100%, #e6e9f0 0%);
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin: 0 8px;
+}
+
+.conversation_input {
+  display: flex;
+  height: 40px;
+  padding: 0 4px;
+  /* background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); */
+}
+
+.input_toolbar {
+  display: flex;
+  background: transparent;
+}
+
+.input_text {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+}
+
+.input_text input {
+  height: 100%;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  background-image: linear-gradient(to top, #d6d8dc 100%, #cfd1d8 0%);
+  padding: 0 10px;
+}
+
+.header_nav {
+  display: flex;
+  height: 100%;
+}
+
+.nav_icon {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav_icon img {
+  height: 100%;
+  filter: invert(31%) sepia(97%) saturate(2622%) hue-rotate(197deg)
+    brightness(106%) contrast(103%);
+}
+
+.padding_left_8 {
+  padding-left: 8px;
+}
+
+.padding_right_8 {
+  padding-right: 8px;
+}
+
+.conversation_information {
+  height: 100%;
+  width: 300px;
+  min-width: 300px;
+  background-image: linear-gradient(to top, #eef1f5 100%, #e6e9f0 0%);
+  display: block;
+}
+
+.information_item {
+  background-color: #fff;
+  height: 100px;
+  transition: all 0.4s ease-in-out;
+}
+
+.infor_item_header {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+.infor_item_header:hover {
+  background-color: #d6d8dc;
+}
+.infor_item_header img {
+  padding: 2px;
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  /* .conversation_information {
+      position: absolute;
+      right: 0;
+      top: 0;
+    } */
+}

@@ -5,10 +5,13 @@ import ChatNav from "../../components/nav/index";
 
 import Modal from "../../../../UI/modal";
 import { useDispatch, useSelector } from "react-redux";
-import { signout } from "../../../../store/actions";
+import { signout, socketConnect } from "../../../../store/actions";
 import ChatList from "../../components/ChatList";
 import Assets from "/media/troutrous/Work/Reactjs/ESchool/src/assets/index.js";
 import { io } from "socket.io-client";
+import Conversation from "../../components/conversation";
+import CreateRoomModal from "../../components/CreateRoomModal";
+import EditRoomModal from "../../components/EditRoomModal";
 
 const fake_list_room = [
   {
@@ -165,32 +168,25 @@ const fake_list_messages = [
     },
   },
 ];
-const socket = io(process.env.REACT_APP_BACKEND_URL, {
-  withCredentials: true,
-});
+
 const Chat = () => {
   //init
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    // client-side
-    socket.on("connect", () => {
-      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    });
-
-    socket.on("disconnect", () => {
-      console.log(socket.id); // undefined
-    });
-  }, []);
-
   //state
+
   const [settingsPopup, setSettingsPopup] = useState(false);
-  const [showConverInfo, setShowConverInfo] = useState(true);
+  const [showConverInfo, setShowConverInfo] = useState(false);
+  const [createModalShow, setCreateModalShow] = useState(false);
+  const [editModalShow, setEditModalShow] = useState(false);
 
   //redux state
   const userProfileState = useSelector((state) => state.user.profile);
 
   //handle
+
+  useEffect(() => {
+    dispatch(socketConnect());
+  }, [dispatch]);
 
   const handleLogout = () => {
     try {
@@ -210,6 +206,49 @@ const Chat = () => {
       console.log(error);
     }
   };
+  // const handleSendMessage = (e) => {
+  //   e.preventDefault();
+  //   socket.emit("client_send_sessage", () => {
+  //     console.log("client_send_sessage");
+  //   });
+  // };
+
+  const [filesUpload, setFilesUpload] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState(null);
+
+  const [filesUploadEditRoom, setFilesUploadEditRoom] = useState(null);
+  const [selectedFilesEditRoom, setSelectedFilesEditRoom] = useState(null);
+
+  const handleImageChange = (e) => {
+    // console.log(e.target.files[])
+    if (e.target.files) {
+      const filesObject = URL.createObjectURL(e.target.files[0]);
+
+      setFilesUpload(e.target.files[0]);
+
+      // console.log("filesArray: ", filesArray);
+
+      setSelectedFiles(filesObject);
+      Array.from(e.target.files).map(
+        (file) => URL.revokeObjectURL(file) // avoid memory leak
+      );
+    }
+  };
+
+  const handleImageChangeEditRoom = (e) => {
+    if (e.target.files) {
+      const filesObject = URL.createObjectURL(e.target.files[0]);
+
+      setFilesUploadEditRoom(e.target.files[0]);
+
+      // console.log("filesArray: ", filesArray);
+
+      setSelectedFilesEditRoom(filesObject);
+      Array.from(e.target.files).map(
+        (file) => URL.revokeObjectURL(file) // avoid memory leak
+      );
+    }
+  };
   return (
     <div className={classes.chat_container}>
       <ChatNav
@@ -217,95 +256,31 @@ const Chat = () => {
         setSettingsPopup={setSettingsPopup}
         handleLogout={handleLogout}
         userAvatar={userProfileState?._avatar}
+        showCreateRoomModal={() => setCreateModalShow(true)}
       />
       <ChatList listRoom={fake_list_room} />
-      {/* <Modal>
-        <p>Hahaha</p>
-      </Modal> */}
-
-      <div className={classes.chat_conversation}>
-        <div className={classes.conversation_content}>
-          <div className={classes.conversation_header}>
-            <div className={classes.conversation_card}>
-              <div className={classes.conversation_avatar}>
-                <img
-                  src="https://yesoffice.com.vn/wp-content/themes/zw-theme//assets/images/default.jpg"
-                  alt="room"
-                />
-              </div>
-              <div className={classes.conversation_text}>
-                <p>Ten phong</p>
-              </div>
-            </div>
-            <div className={classes.header_nav}>
-              <div
-                className={[classes.nav_icon, classes.padding_right_8].join(
-                  " "
-                )}
-              >
-                <img src={Assets.video_camera_svg} alt="video_call" />
-              </div>
-              <div className={classes.nav_icon}>
-                <img
-                  src={Assets.layout_svg}
-                  alt="layout_svg"
-                  onClick={() => {
-                    setShowConverInfo(!showConverInfo);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={classes.conversation_messages}>
-            <ul>
-              {fake_list_messages.map((message) => (
-                <li key={message._id}>
-                  <div
-                    className={[classes.message, classes.message_reverse].join(
-                      " "
-                    )}
-                  >
-                    <div className={classes.message_avatar}>
-                      <img src={message.user.avatar} alt="message" />
-                    </div>
-                    <div className={classes.message_content}>
-                      <p>{message.content}</p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={classes.conversation_input}>
-            <div className={classes.input_toolbar}>
-              <div className={classes.nav_icon}>
-                <img src={Assets.image_svg} alt="images" />
-              </div>
-              <div
-                className={[classes.nav_icon, classes.padding_left_8].join(" ")}
-              >
-                <img src={Assets.attachments_svg} alt="attachments" />
-              </div>
-            </div>
-            <div className={classes.input_text}>
-              <input type="text" />
-            </div>
-            <div className={classes.input_toolbar}>
-              <div className={classes.nav_icon}>
-                <img src={Assets.send_svg} alt="send_svg" />
-              </div>
-            </div>
-          </div>
-        </div>
-        {showConverInfo && (
-          <div className={classes.conversation_information}>
-            <div className={classes.conversation_header}>
-              <p>Conversation Information</p>
-            </div>
-            <div className={classes.information_content}></div>
-          </div>
-        )}
-      </div>
+      <Conversation
+        messages={fake_list_messages}
+        showConverInfo={showConverInfo}
+        setShowConverInfo={setShowConverInfo}
+        showEditRoomModal={() => setEditModalShow(true)}
+      />
+      {editModalShow && (
+        <EditRoomModal
+          show={editModalShow}
+          onHide={() => setEditModalShow(false)}
+          handleImageChange={handleImageChangeEditRoom}
+          selectedFiles={selectedFilesEditRoom}
+        />
+      )}
+      {createModalShow && (
+        <CreateRoomModal
+          show={createModalShow}
+          onHide={() => setCreateModalShow(false)}
+          handleImageChange={handleImageChange}
+          selectedFiles={selectedFiles}
+        />
+      )}
     </div>
   );
 };

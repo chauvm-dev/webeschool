@@ -8,6 +8,7 @@ const ChatNav = ({
   setSettingsPopup,
   handleLogout,
   userAvatar,
+  showCreateRoomModal,
 }) => {
   return (
     <div className={classes.chat_nav}>
@@ -30,7 +31,11 @@ const ChatNav = ({
           <li>
             <div className={classes.toolbar_item}>
               <div className={classes.toolbar_item_effect}></div>
-              <img src={assets.button_svg} alt="plus" />
+              <img
+                src={assets.button_svg}
+                alt="plus"
+                onClick={showCreateRoomModal}
+              />
             </div>
           </li>
           <li>
