@@ -102,8 +102,9 @@
 
 .conversation_input {
   display: flex;
-  height: 40px;
+  height: 44px;
   padding: 0 4px;
+  color: #212529 !important;
   /* background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); */
 }
 

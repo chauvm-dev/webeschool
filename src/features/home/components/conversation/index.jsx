@@ -5,8 +5,11 @@ import Assets from "../../../../assets";
 const Conversation = ({
   showConverInfo,
   setShowConverInfo,
-  messages,
   showEditRoomModal,
+  handleEmitMessage,
+  messageInput,
+  handleMessageInputChange,
+  conversationActivity,
 }) => {
   return (
     <div className={classes.chat_conversation}>
@@ -14,10 +17,7 @@ const Conversation = ({
         <div className={classes.conversation_header}>
           <div className={classes.conversation_card}>
             <div className={classes.conversation_avatar}>
-              <img
-                src="https://yesoffice.com.vn/wp-content/themes/zw-theme//assets/images/default.jpg"
-                alt="room"
-              />
+              <img src={process.env.REACT_APP_THUMBNAIL_DEFAULT} alt="room" />
             </div>
             <div className={classes.conversation_text}>
               <p>Ten phong</p>
@@ -46,22 +46,34 @@ const Conversation = ({
         </div>
         <div className={classes.conversation_messages}>
           <ul>
-            {messages.map((message) => (
-              <li key={message._id}>
-                <div
-                  className={[classes.message, classes.message_reverse].join(
-                    " "
-                  )}
-                >
-                  <div className={classes.message_avatar}>
-                    <img src={message.user.avatar} alt="message" />
+            {conversationActivity &&
+              conversationActivity.messages &&
+              conversationActivity.messages.map((message) => (
+                <li key={message._id}>
+                  <div
+                    className={[classes.message, classes.message_reverse].join(
+                      " "
+                    )}
+                  >
+                    <div className={classes.message_avatar}>
+                      {(message.avatar && (
+                        <img
+                          src={message.avatar}
+                          alt={`avatar ${message._sender}`}
+                        />
+                      )) || (
+                        <img
+                          src={process.env.REACT_APP_THUMBNAIL_DEFAULT}
+                          alt={`avatar`}
+                        />
+                      )}
+                    </div>
+                    <div className={classes.message_content}>
+                      <p>{message.content}</p>
+                    </div>
                   </div>
-                  <div className={classes.message_content}>
-                    <p>{message.content}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))}
           </ul>
         </div>
         <div className={classes.conversation_input}>
@@ -75,15 +87,26 @@ const Conversation = ({
               <img src={Assets.attachments_svg} alt="attachments" />
             </div>
           </div>
-          <div className={classes.input_text}>
-            <input type="text" />
-          </div>
+
+          <form
+            className={classes.input_text}
+            onSubmit={handleEmitMessage}
+            autoComplete="off"
+          >
+            <input
+              type="text"
+              name="message"
+              onChange={handleMessageInputChange}
+              value={messageInput}
+              autoComplete="off"
+            />
+          </form>
           <div className={classes.input_toolbar}>
             <div className={classes.nav_icon}>
               <img
                 src={Assets.send_svg}
                 alt="send_svg"
-                // onClick={handleSendMessage}
+                onClick={handleEmitMessage}
               />
             </div>
           </div>

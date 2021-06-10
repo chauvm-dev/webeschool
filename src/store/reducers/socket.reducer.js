@@ -5,10 +5,10 @@ const initialState = {
 
 const socketReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SIGN_SUCCESS:
+    case actionTypes.SOCKET_CONNECT_SUCCESS:
       return {
         ...state,
-        socket: action.payload.socket,
+        socket: action.payload,
       };
     default:
       return state;

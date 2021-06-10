@@ -17,10 +17,7 @@ const ChatNav = ({
           {(userAvatar && (
             <img src={userAvatar?.src} alt={userAvatar?.alt} />
           )) || (
-            <img
-              src="https://yesoffice.com.vn/wp-content/themes/zw-theme//assets/images/default.jpg"
-              alt="logo"
-            />
+            <img src={process.env.REACT_APP_THUMBNAIL_DEFAULT} alt="Avatar" />
           )}
 
           <div className={classes.user_status_activity}></div>
